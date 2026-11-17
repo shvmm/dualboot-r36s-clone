@@ -1,0 +1,25 @@
+odroidgoa-uboot-config
+
+# Mainline Linux for an R36S clone, booted by the dArkOS4Clone bootloader.
+# No editing needed. To go back to dArkOS: delete this file and rename
+# boot.ini.darkos (or boot.ini.darkos-type2) to boot.ini.
+
+setenv bootargs "console=tty0 loglevel=7"
+
+setenv loadaddr "0x02000000"
+setenv initrd_loadaddr "0x01100000"
+setenv dtb_loadaddr "0x01f00000"
+setenv mainline_fdt_addr "0x01e00000"
+
+load mmc 1:1 ${loadaddr} Image-mainline
+load mmc 1:1 ${initrd_loadaddr} r36s-hwtest.uInitrd
+
+# The bootloader takes the FIRST "load ... .dtb" line in this file as its own
+# device tree (boot logo, power chip) and keeps it at 0x01f00000 while it runs.
+# That file must be a dArkOS one, and nothing else may be loaded at that address.
+load mmc 1:1 ${dtb_loadaddr} rk3326-r36s-type2-panel1-linux.dtb
+
+# The mainline kernel gets its own device tree at a separate address.
+load mmc 1:1 ${mainline_fdt_addr} mainline-r36s-clone.fdt
+
+booti ${loadaddr} ${initrd_loadaddr} ${mainline_fdt_addr}
