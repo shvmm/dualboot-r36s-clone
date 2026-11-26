@@ -1,5 +1,5 @@
-# dualboot-r36s-clone
-Dual boots latest linux 7.3.4 for testing and development purposes alongside arkos4clone
+# dualboot-r36s-clone and usb-(xbox360)gamepad
+Dual boots latest linux 7.3.4 and an usb generic/xbox360 controller overlay for testing and development purposes alongside arkos4clone
 
 HAZARD/CAUTION/WARNING: THIS IS STILL IN STAGING AND MEANT TO BE AN IDEA!!
 THIS IS ONLY VERIFIED ON R36S CLONE TYPE2 PANEL1 WO AMP.
